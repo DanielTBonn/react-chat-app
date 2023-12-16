@@ -1,43 +1,15 @@
 import './Chat.css'
-import { useState, useEffect } from 'react';
-import { 
-    Container, 
-    Col, 
-    Form, 
-    Button, 
-    Row } from 'react-bootstrap';
-
+import {
+    Container
+} from 'react-bootstrap'
 
 function Chat() {
 
-    const [ message, setMessage ] = useState('')
-
-    const handleInputChange = (e) => {
-        e.preventDefault();
-
-        const { value } = e.target;
-        setMessage(value)
-    }
-
     return (
-        <Container className="container-message">
-                <Form>
-                    <Form.Control
-                        as="textarea"
-                        name="message"
-                        value={message}
-                        onChange={(e) => handleInputChange(e)}
-                        type="text"
-                        rows="3"
-                        cols="100"
-                        size="lg"
-                        placeholder="Leave a message..."
-                        />
-                </Form>
-        </Container>
-        
+        <div>
+            <p>Hello World!</p>
+        </div>
     )
-
 }
 
 export default Chat;
