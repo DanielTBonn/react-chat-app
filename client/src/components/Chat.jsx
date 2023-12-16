@@ -12,15 +12,21 @@ function Chat() {
 
     const [ message, setMessage ] = useState('')
 
+    const handleInputChange = (e) => {
+        e.preventDefault();
+
+        const { value } = e.target;
+        setMessage(value)
+    }
+
     return (
-        <Container>
+        <Container className="container-message">
                 <Form>
                     <Form.Control
                         as="textarea"
                         name="message"
-                        value={''}
-                        // className="form-message"
-                        onChange={() => console.log("Hello World!")}
+                        value={message}
+                        onChange={(e) => handleInputChange(e)}
                         type="text"
                         rows="3"
                         cols="100"
