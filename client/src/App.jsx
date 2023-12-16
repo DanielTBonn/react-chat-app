@@ -4,6 +4,8 @@ import './App.css';
 import Header from './components/Header';
 import Chat from './components/Chat';
 
+import ChatRoom from './pages/ChatRoom';
+
 
 function App() {
 
@@ -14,7 +16,7 @@ function App() {
     return (
         <div>
             <Header />
-            <Chat />
+            <ChatRoom />
         </div>
     )
 }
