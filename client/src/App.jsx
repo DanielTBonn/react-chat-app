@@ -1,4 +1,8 @@
-// import './App.css';
+import './App.css';
+// import { Outlet } from 'react-router-dom';
+
+import Header from './components/Header';
+
 
 function App() {
 
@@ -8,7 +12,7 @@ function App() {
 
     return (
         <div>
-            <p>Hello World!</p>
+            <Header />
         </div>
     )
 }
