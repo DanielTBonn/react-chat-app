@@ -7,7 +7,9 @@ function Chat() {
 
     return (
         <div>
-            <p>Hello World!</p>
+            <Container className="container-chat" >
+                <p>Hello World!</p>
+            </Container>
         </div>
     )
 }
