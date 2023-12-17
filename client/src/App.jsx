@@ -1,6 +1,8 @@
 import './App.css';
 // import { Outlet } from 'react-router-dom';
 
+import { StoreProvider } from './utils/GlobalState';
+
 import Header from './components/Header';
 import Message from './components/Message';
 
@@ -9,14 +11,12 @@ import ChatRoom from './pages/ChatRoom';
 
 function App() {
 
-    const renderPage = () => {
-        return null
-    }
-
     return (
         <div>
-            <Header />
-            <ChatRoom />
+            <StoreProvider>
+                <Header />
+                <ChatRoom />
+            </StoreProvider>
         </div>
     )
 }
