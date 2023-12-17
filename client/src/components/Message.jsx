@@ -7,16 +7,29 @@ import {
     Button, 
     Row } from 'react-bootstrap';
 
+import { useStoreContext } from '../utils/GlobalState';
+import { UPDATE_CHAT } from '../utils/actions';
 
 function Message() {
 
     const [ message, setMessage ] = useState('')
+
+    const [state, dispatch] = useStoreContext();
 
     const handleInputChange = (e) => {
         e.preventDefault();
 
         const { value } = e.target;
         setMessage(value)
+    }
+
+    const sendToChat = () => {
+        if(message) {
+            dispatch({
+                type: UPDATE_CHAT,
+                messages: [...state.messages, message] 
+            })
+        }
     }
 
     return (
@@ -33,6 +46,11 @@ function Message() {
                         size="lg"
                         placeholder="Leave a message..."
                         />
+                    <Button
+                        onClick={sendToChat}
+                    >
+                        Send
+                    </Button>
                 </Form>
         </Container>
         
