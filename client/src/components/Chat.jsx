@@ -13,7 +13,7 @@ function Chat() {
         <div>
             <Container className="container-chat" >
                 {state.messages ? state.messages.map((message) => (
-                    <p>{message}</p>
+                    <p key={message} >{message}</p>
                     )) : <p>Hello World!</p>}
             </Container>
         </div>

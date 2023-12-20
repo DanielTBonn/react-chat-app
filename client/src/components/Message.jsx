@@ -2,10 +2,9 @@ import './Message.css'
 import { useState, useEffect } from 'react';
 import { 
     Container, 
-    Col, 
     Form, 
-    Button, 
-    Row } from 'react-bootstrap';
+    Button 
+    } from 'react-bootstrap';
 
 import { useStoreContext } from '../utils/GlobalState';
 import { UPDATE_CHAT } from '../utils/actions';
