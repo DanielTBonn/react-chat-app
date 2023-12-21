@@ -9,6 +9,8 @@ import {
 import { useStoreContext } from '../utils/GlobalState';
 import { UPDATE_CHAT } from '../utils/actions';
 
+import socket from '../utils/socket';
+
 function Message() {
 
     const [ message, setMessage ] = useState('')
@@ -27,8 +29,12 @@ function Message() {
             dispatch({
                 type: UPDATE_CHAT,
                 messages: [...state.messages, message] 
-            })
+            });
+
+            socket.emit('chat-message', message);
         }
+
+        setMessage('')
     }
 
     return (

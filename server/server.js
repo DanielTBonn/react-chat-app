@@ -40,10 +40,15 @@ const startServer = async () => {
     
     io.on('connection', (socket) => {
         console.log('a user connected');
-        socket.join('chat-room')
+        socket.join('chat-room');
+
+        socket.on('chat-message', (msg) => {
+            console.log('message: ' + msg)
+        });
+
         socket.on('disconnect', () => {
             console.log('user disconnected')
-        })
+        });
     })
     
     // db.once('open', () => {
