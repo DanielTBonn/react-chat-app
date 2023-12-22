@@ -19,12 +19,12 @@ function App() {
         // console.log(socket)
 
         socket.on('connect_error', ()=>{
-            setTimeout(()=>socket.connect(),5000)
-          })
+            setTimeout(()=> socket.connect(), 5000)
+          });
         //  socket.on('time', (data)=>setTime(data))
-         socket.on('disconnect',()=>setTime('server disconnected'))
+         socket.on('disconnect',()=>setTime('server disconnected'));
 
-    }, [])
+    }, [socket])
 
     return (
         <div>

@@ -52,6 +52,7 @@ function Message() {
                         placeholder="Leave a message..."
                         />
                     <Button
+                        onSubmit={sendToChat}
                         onClick={sendToChat}
                     >
                         Send

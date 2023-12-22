@@ -24,7 +24,6 @@ const io = socketIo(server, {
     }
 })
 
-console.log(io)
 
 const startServer = async () => {
 
@@ -44,6 +43,7 @@ const startServer = async () => {
 
         socket.on('chat-message', (msg) => {
             console.log('message: ' + msg)
+            socket.broadcast.emit('chat-message', msg);
         });
 
         socket.on('disconnect', () => {
