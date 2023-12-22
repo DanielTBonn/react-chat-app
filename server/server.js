@@ -12,11 +12,14 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 const PORT = process.env.PORT || 3001;
+const IS_PROD = process.env.NODE_ENV === "production";
+
+const ORIGIN = IS_PROD ? 'website' : 'http://localhost:3000'
 
 const server = http.createServer(app);
 const io = socketIo(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: ORIGIN,
         // allowedHeaders: ["Access-Control-Allow-Origin"],
         methods: ["GET", "POST"],
         credentials: true

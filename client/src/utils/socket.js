@@ -1,6 +1,10 @@
 import io from 'socket.io-client';
 
-const socket = io('http://localhost:3001', {
+const IS_PROD = process.env.NODE_ENV === "production";
+
+const SERVER_HOST = IS_PROD ? "website" : 'http://localhost:3001'
+
+const socket = io(SERVER_HOST, {
     withCredentials: true,
 });
 
