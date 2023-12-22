@@ -18,12 +18,6 @@ function App() {
         socket.on('connect', () => console.log(socket.id))
         // console.log(socket)
 
-        socket.on('connect_error', ()=>{
-            setTimeout(()=> socket.connect(), 5000)
-          });
-        //  socket.on('time', (data)=>setTime(data))
-         socket.on('disconnect',()=>setTime('server disconnected'));
-
     }, [socket])
 
     return (
