@@ -24,6 +24,7 @@ const resolvers = {
                 { room: args.room },
                 { $addToSet: { messages: message }}
             )
+            .populate('messages')
             
             return chat
         }
