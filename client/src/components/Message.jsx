@@ -24,7 +24,9 @@ function Message() {
         setMessage(value)
     }
 
-    const sendToChat = () => {
+    const sendToChat = (e) => {
+        e.preventDefault();
+
         if(message) {
             dispatch({
                 type: UPDATE_CHAT,
@@ -37,22 +39,33 @@ function Message() {
         setMessage('')
     }
 
+    const onEnterPress = (e) => {
+        if(e.keyCode === 13 && e.shiftKey === false) {
+            e.preventDefault();
+            sendToChat(e);
+        }
+    }
+
     return (
         <Container className="container-message">
-                <Form>
-                    <Form.Control
-                        as="textarea"
-                        name="message"
-                        value={message}
-                        onChange={(e) => handleInputChange(e)}
-                        type="text"
-                        rows="3"
-                        cols="100"
-                        size="lg"
-                        placeholder="Leave a message..."
-                        />
+                <Form >
+                    <Form.Group>
+                        <Form.Control
+                            as="textarea"
+                            name="message"
+                            value={message}
+                            onChange={(e) => handleInputChange(e)}
+                            onKeyDown={onEnterPress}
+                            type="text"
+                            rows={3}
+                            cols={100}
+                            size="lg"
+                            placeholder="Leave a message..."
+                            />
+                    </Form.Group>
                     <Button
-                        onSubmit={sendToChat}
+                        variant="primary"
+                        type="submit"
                         onClick={sendToChat}
                     >
                         Send
