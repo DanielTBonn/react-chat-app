@@ -37,12 +37,12 @@ function Chat() {
     return (
         <div>
             <Container className="container-chat" >
-                {state.messages ? state.messages.map((message) => (
-                    <p key={message} >{message}</p>
+                {state.messages ? state.messages.map((message, index) => (
+                    <p key={index} >{message}</p>
                     )) : <p>Hello World!</p>
                     }
-                {emitted.length ? emitted.map((message) => (
-                    <p key={message} >{message}</p>
+                {emitted.length ? emitted.map((message, index) => (
+                    <p key={index} >{message}</p>
                     )) : <p>No emitted messages</p>
                     }
             </Container>
