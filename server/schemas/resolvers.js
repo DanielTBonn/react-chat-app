@@ -1,9 +1,9 @@
-const { Chat } = require('../models');
+const { Chat, Message } = require('../models');
 
 const resolvers = {
     Query: {
         chat: async(parent, args) => {
-            return await Chat.find();
+            return await Chat.find().populate('messages');
         }
     },
     Mutation: {
@@ -15,9 +15,14 @@ const resolvers = {
             return chat
         },
         updateChat: async(parent, args) => {
+
+            const message = await Message.create({
+                message: args.message
+            })
+
             const chat = await Chat.findOneAndUpdate(
                 { room: args.room },
-                { $addToSet: { messages: args.message }}
+                { $addToSet: { messages: message }}
             )
             
             return chat

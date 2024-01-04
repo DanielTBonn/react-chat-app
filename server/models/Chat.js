@@ -8,7 +8,12 @@ const chatSchema = new Schema(
             required: true,
             unique: true
         },
-        messages: [messageSchema]
+        messages: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: "Message"
+            }
+        ]
     }
 )
 
