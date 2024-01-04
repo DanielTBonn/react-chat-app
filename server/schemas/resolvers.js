@@ -27,6 +27,12 @@ const resolvers = {
             .populate('messages')
             
             return chat
+        },
+        deleteChat: async(parent, args) => {
+            return await Chat.findOneAndDelete(
+                {room: args.room}
+            )
+            .populate('messages')
         }
     }
 }
