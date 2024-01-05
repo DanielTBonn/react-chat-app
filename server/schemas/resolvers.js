@@ -4,6 +4,12 @@ const resolvers = {
     Query: {
         chat: async(parent, args) => {
             return await Chat.find().populate('messages');
+        },
+        getChat: async (parent, args) => {
+            return await Chat.findOne({
+                room: args.room
+            })
+            .populate('messages')
         }
     },
     Mutation: {

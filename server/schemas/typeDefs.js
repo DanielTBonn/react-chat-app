@@ -12,6 +12,7 @@ const typeDefs = `
 
     type Query {
         chat: [Chat]
+        getChat(room: String!): Chat
     }
     type Mutation {
         createChat(room: String!): Chat

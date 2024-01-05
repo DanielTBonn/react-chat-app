@@ -6,11 +6,20 @@ import { useStoreContext } from '../utils/GlobalState';
 import socket from '../utils/socket';
 import { useEffect } from 'react';
 import { UPDATE_CHAT } from '../utils/actions';
+import { GET_CHAT } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 function Chat() {
 
     const [state, dispatch] = useStoreContext(); 
     console.log(state)
+
+    const { loading, data, error } = useQuery(GET_CHAT, 
+        { 
+            variables: { room: state.room }}
+        )
+
+    console.log(data)
 
     const emitted = []
 
