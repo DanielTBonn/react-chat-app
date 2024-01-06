@@ -20,11 +20,28 @@ function Chat() {
         )
 
     console.log(data)
+    // console.log(data.getChat)
+
+    const myData = data?.getChat || []
+    console.log(myData)
 
     const emitted = []
 
     useEffect(() => {
-        console.log(" in use effect")
+        console.log(" in use effect");
+
+        if (data) {
+
+            const messageData = myData?.messages.map((message) => message.message)
+
+            console.log("messageData", messageData)
+
+            dispatch({
+                type: UPDATE_CHAT,
+                messages: messageData
+            })
+        }
+
 
         socket.on('chat-message', function(msg) {
             console.log('in socket on')
@@ -39,13 +56,19 @@ function Chat() {
         })
         
         console.log(emitted);
-    }, [state, emitted])
+    }, [])
 
 
 
     return (
         <div>
             <Container className="container-chat" >
+                {/* { loading ? <p> No messages at this time</p> : 
+                dispatch({
+                    type: UPDATE_CHAT,
+                    messages: [...state.messages] 
+                })
+                }  */}
                 {state.messages ? state.messages.map((message, index) => (
                     <p key={index} >{message}</p>
                     )) : <p>Hello World!</p>
