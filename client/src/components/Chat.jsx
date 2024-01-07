@@ -27,19 +27,35 @@ function Chat() {
 
     const emitted = []
 
+
+    // if (data) {
+
+    //     const messageData = myData?.messages.map((message) => message.message)
+
+    //     console.log("messageData", messageData)
+
+    //     dispatch({
+    //         type: UPDATE_CHAT,
+    //         messages: [...state.messages, ...messageData]
+    //     })
+    // }
+
+
     useEffect(() => {
         console.log(" in use effect");
+        console.log('isState.messages', !state.messages.length)
 
-        if (data) {
-
+        if (!state.messages.length && myData.messages) {
+            console.log("hello inside of if && statement")
             const messageData = myData?.messages.map((message) => message.message)
 
             console.log("messageData", messageData)
 
             dispatch({
                 type: UPDATE_CHAT,
-                messages: messageData
+                messages: [...state.messages, ...messageData]
             })
+
         }
 
 
@@ -56,7 +72,7 @@ function Chat() {
         })
         
         console.log(emitted);
-    }, [])
+    }, [state, data])
 
 
 
