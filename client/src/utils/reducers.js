@@ -1,4 +1,4 @@
-import { UPDATE_CHAT } from "./actions";
+    import { UPDATE_CHAT } from "./actions";
 
 export const reducer = (state, action) => {
     switch (action.type) {

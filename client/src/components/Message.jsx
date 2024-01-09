@@ -1,5 +1,6 @@
 import './Message.css'
 import { useState, useEffect } from 'react';
+import { useMutation } from '@apollo/client/react/hooks';
 import { 
     Container, 
     Form, 
@@ -8,6 +9,7 @@ import {
 
 import { useStoreContext } from '../utils/GlobalState';
 import { UPDATE_CHAT } from '../utils/actions';
+import { UPDATE_DBCHAT } from '../utils/mutations';
 
 import socket from '../utils/socket';
 
@@ -17,6 +19,8 @@ function Message() {
 
     const [state, dispatch] = useStoreContext();
 
+    const [updatChat, { error, data }] = useMutation(UPDATE_DBCHAT)
+
     const handleInputChange = (e) => {
         e.preventDefault();
 
@@ -24,14 +28,24 @@ function Message() {
         setMessage(value)
     }
 
-    const sendToChat = (e) => {
+    const sendToChat = async (e) => {
         e.preventDefault();
 
         if(message) {
-            dispatch({
+            await dispatch({
                 type: UPDATE_CHAT,
                 messages: [...state.messages, message] 
             });
+
+            const { data } = await updatChat({
+                variables: {
+                    room: state.room,
+                    message: message
+                }
+            });
+
+            console.log('data from update mutation', data)
+
 
             socket.emit('chat-message', message);
         }
