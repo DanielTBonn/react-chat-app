@@ -46,15 +46,15 @@ function Chat() {
         console.log('isState.messages', !state.messages.length)
 
         if (!state.messages.length && myData.messages) {
-            console.log("hello inside of if && statement")
-            const messageData = myData?.messages.map((message) => message.message)
+            console.log("hello inside of if && statement");
+            const messageData = myData?.messages.map((message) => message.message);
 
-            console.log("messageData", messageData)
+            console.log("messageData", messageData);
 
             dispatch({
                 type: UPDATE_CHAT,
                 messages: [...state.messages, ...messageData]
-            })
+            });
 
         }
 
