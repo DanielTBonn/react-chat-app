@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import App from './App';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from './pages/HomePage'
+import ChatRoom from "./pages/ChatRoom";
 
 const router = createBrowserRouter([
     {
@@ -10,9 +11,13 @@ const router = createBrowserRouter([
         errorElement: <h1 className="display-2">Wrong Page!</h1>,
         children: [
             {
-                path: '/home',
+                index: true,
                 element: <HomePage />
             },
+            {
+                path: '/room',
+                element: <ChatRoom />
+            }
         ]
     }
 ])

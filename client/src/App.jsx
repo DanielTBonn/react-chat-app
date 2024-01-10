@@ -1,7 +1,6 @@
 import './App.css';
-import { useEffect } from 'react';
 // import { Outlet } from 'react-router-dom';
-import socket from './utils/socket';
+import { Outlet } from 'react-router-dom';
 
 import {
     ApolloClient, 
@@ -14,9 +13,7 @@ import {
 import { StoreProvider } from './utils/GlobalState';
 
 import Header from './components/Header';
-import Message from './components/Message';
 
-import ChatRoom from './pages/ChatRoom';
 
 const httpLink = createHttpLink({
     uri: '/graphql',
@@ -31,18 +28,13 @@ const client = new ApolloClient({
 
 function App() {
 
-    useEffect(() => {
-        socket.on('connect', () => console.log(socket.id))
-        // console.log(socket)
-
-    }, [socket])
 
     return (
         <div>
             <ApolloProvider client={client}>
                 <StoreProvider>
                     <Header />
-                    <ChatRoom />
+                    <Outlet />
                 </StoreProvider>
             </ApolloProvider>
         </div>
