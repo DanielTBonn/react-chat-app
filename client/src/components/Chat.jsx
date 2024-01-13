@@ -5,7 +5,7 @@ import {
 import { useStoreContext } from '../utils/GlobalState';
 import socket from '../utils/socket';
 import { useEffect } from 'react';
-import { UPDATE_CHAT } from '../utils/actions';
+import { UPDATE_CHAT, UPDATE_ROOM } from '../utils/actions';
 import { GET_CHAT } from '../utils/queries';
 import { useQuery } from '@apollo/client';
 import { useParams } from 'react-router-dom';
@@ -17,40 +17,28 @@ function Chat() {
     console.log(state)
 
     const roomId = useParams();
-    console.log(roomId.id)
-
+    
     const { loading, data, error } = useQuery(GET_CHAT_BY_ID, 
         { 
-            variables: { roomId: roomId.id }}
-        )
+            variables: { roomId: roomId.id }
+        }
+    )
 
-    console.log(data)
-    // console.log(data.getChat)
-
-    const myData = data?.getChatById || []
-    console.log(myData)
-
-    const emitted = []
-
-
-    // if (data) {
-
-    //     const messageData = myData?.messages.map((message) => message.message)
-
-    //     console.log("messageData", messageData)
-
-    //     dispatch({
-    //         type: UPDATE_CHAT,
-    //         messages: [...state.messages, ...messageData]
-    //     })
-    // }
-
+    
+    const myData = data?.getChatById || [];
+    const myRoom = myData.room;
 
     useEffect(() => {
-        console.log(" in use effect");
         console.log('isState.messages', !state.messages.length)
 
-        if (!state.messages.length && myData.messages) {
+        if (!state.room && myRoom) {
+            dispatch({
+                type: UPDATE_ROOM,
+                room: myRoom
+            });
+        }
+
+        if (!state.messages.length && myData.messages?.length) {
             console.log("hello inside of if && statement");
             const messageData = myData?.messages.map((message) => message.message);
 
@@ -60,14 +48,10 @@ function Chat() {
                 type: UPDATE_CHAT,
                 messages: [...state.messages, ...messageData]
             });
-
+            
         }
 
-
         socket.on('chat-message', function(msg) {
-            console.log('in socket on')
-            console.log('socket on msg', msg)
-            emitted.push(msg);
             if(msg) {
                 dispatch({
                     type: UPDATE_CHAT,
@@ -76,10 +60,7 @@ function Chat() {
             }
         })
         
-        console.log(emitted);
     }, [state, data])
-
-
 
     return (
         <div>
@@ -93,10 +74,6 @@ function Chat() {
                 {state.messages ? state.messages.map((message, index) => (
                     <p key={index} >{message}</p>
                     )) : <p>Hello World!</p>
-                    }
-                {emitted.length ? emitted.map((message, index) => (
-                    <p key={index} >{message}</p>
-                    )) : <p>No emitted messages</p>
                     }
             </Container>
         </div>
