@@ -8,21 +8,26 @@ import { useEffect } from 'react';
 import { UPDATE_CHAT } from '../utils/actions';
 import { GET_CHAT } from '../utils/queries';
 import { useQuery } from '@apollo/client';
+import { useParams } from 'react-router-dom';
+import { GET_CHAT_BY_ID } from '../utils/queries';
 
 function Chat() {
 
     const [state, dispatch] = useStoreContext(); 
     console.log(state)
 
-    const { loading, data, error } = useQuery(GET_CHAT, 
+    const roomId = useParams();
+    console.log(roomId.id)
+
+    const { loading, data, error } = useQuery(GET_CHAT_BY_ID, 
         { 
-            variables: { room: state.room }}
+            variables: { roomId: roomId.id }}
         )
 
     console.log(data)
     // console.log(data.getChat)
 
-    const myData = data?.getChat || []
+    const myData = data?.getChatById || []
     console.log(myData)
 
     const emitted = []

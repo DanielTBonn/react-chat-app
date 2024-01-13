@@ -23,12 +23,12 @@ function HomePage() {
                 },
     })
 
-
     const [createChatRoom, {error: createChatError, data: createChatData}] = useMutation(CREATE_DBCHAT)
 
-    const processChatRequest = async (roomName) => {
+    const processChatRequest = async () => {
         await refetch();
         const chatData = data?.getChat || null;
+        let createdChat = null;
 
         if (chatData) {
             console.log(true);
@@ -41,8 +41,15 @@ function HomePage() {
                     room: chatRoom
                 }
             })
+            createdChat = chatRoomCreated?.createChat;
+            console.log(createdChat)
+            
         }
 
+
+        const chatRoomId = chatData?._id || createdChat._id 
+    
+        window.location.href = `/room/${chatRoomId}`
     } 
 
     const handleInputChange = (e) => {
@@ -69,7 +76,7 @@ function HomePage() {
                         </Form.Control>
                     </Form.Group>
                     <Button
-                        onClick={(chatRoom) => processChatRequest(chatRoom)}
+                        onClick={() => processChatRequest()}
                     >
                         Send 
                     </Button>

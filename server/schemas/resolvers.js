@@ -10,6 +10,16 @@ const resolvers = {
                 room: args.room
             })
             .populate('messages')
+        },
+        getChatById: async (parent, args) => {
+            console.log(args._id)
+
+            return await Chat.findById({
+                _id: args._id
+            })
+            .populate('messages')
+
+
         }
     },
     Mutation: {

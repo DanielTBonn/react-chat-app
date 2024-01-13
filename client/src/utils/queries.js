@@ -13,3 +13,17 @@ export const GET_CHAT = gql`
     }
 
 `
+
+export const GET_CHAT_BY_ID = gql`
+    query GET_CHAT_BY_ID($roomId: ID!) {
+        getChatById(_id: $roomId) {
+            _id
+            room
+            messages {
+                _id
+                message
+            }
+        }
+    }
+
+`
