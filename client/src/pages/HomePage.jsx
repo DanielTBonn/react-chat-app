@@ -11,12 +11,13 @@ import { useQuery, useMutation } from '@apollo/client';
 import { GET_CHAT } from '../utils/queries';
 import { CREATE_DBCHAT } from '../utils/mutations';
 
+import './HomePage.css';
+
 function HomePage() {
 
-    const [ chatRoom, setChatRoom ] = useState('')
-    const [ chatRoomSubmitted, setChatRoomSubmitted ] = useState()
+    const [ chatRoom, setChatRoom ] = useState('');
 
-    const { loading, data, error, refetch} = useQuery(GET_CHAT, 
+    const { data, refetch} = useQuery(GET_CHAT, 
             {
                 variables: {
                      room: chatRoom
@@ -61,27 +62,34 @@ function HomePage() {
     }
 
     return (
-        <div>
-            <Container>
-                <Form>
-                    <Form.Group>
+        <div className="info-control">
+            <div className="grid-container">
 
-                        <Form.Control
-                            name="chat-room"
-                            value={chatRoom}
-                            onChange={(e) => handleInputChange(e)}
-                            type="text"
-                            placeholder="Create or Find a Chat Room..."
+                <Container className="text-container">
+                    <p className="main-text">Chat About Interesting Topics</p>
+                    <p className="sub-text">Talk with strangers or invite friends to join in on the discussion!</p>
+                </Container>
+                <Container className="forms">
+                    <Form className="form-container" onSubmit={(e) => { e.preventDefault(); processChatRequest();} }>
+                        <Form.Label className="sub-text"> Choose a Topic</Form.Label>
+                        <Form.Group className="form-group">
+                            <Form.Control
+                                name="chat-room"
+                                value={chatRoom}
+                                onChange={(e) => handleInputChange(e)}
+                                type="text"
+                                placeholder="Create or Find a Chat Room..."
+                                >
+                            </Form.Control>
+                        </Form.Group>
+                        <Button
+                            onClick={() => processChatRequest()}
                             >
-                        </Form.Control>
-                    </Form.Group>
-                    <Button
-                        onClick={() => processChatRequest()}
-                    >
-                        Send 
-                    </Button>
-                </Form>
-            </Container>
+                            Send 
+                        </Button>
+                    </Form>
+                </Container>
+            </div>
         </div>
     )
 }

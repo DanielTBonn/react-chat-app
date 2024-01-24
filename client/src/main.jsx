@@ -3,6 +3,7 @@ import App from './App';
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from './pages/HomePage'
 import ChatRoom from "./pages/ChatRoom";
+import './main.css'
 
 const router = createBrowserRouter([
     {

@@ -17,7 +17,7 @@ function Chat() {
 
     const roomId = useParams();
     
-    const { loading, data, error } = useQuery(GET_CHAT_BY_ID, 
+    const { data } = useQuery(GET_CHAT_BY_ID, 
         { 
             variables: { roomId: roomId.id }
         }
@@ -42,7 +42,6 @@ function Chat() {
                 type: UPDATE_CHAT,
                 messages: [...state.messages, ...messageData]
             });
-            
         }
 
         socket.on('chat-message', function(msg) {

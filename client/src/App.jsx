@@ -30,7 +30,7 @@ function App() {
 
 
     return (
-        <div>
+        <div className="diagonal-split-background">
             <ApolloProvider client={client}>
                 <StoreProvider>
                     <Header />
