@@ -71,23 +71,49 @@ function HomePage() {
                 </Container>
                 <Container className="forms">
                     <Form className="form-container" onSubmit={(e) => { e.preventDefault(); processChatRequest();} }>
-                        <Form.Label className="sub-text"> Choose a Topic</Form.Label>
-                        <Form.Group className="form-group">
-                            <Form.Control
-                                name="chat-room"
-                                value={chatRoom}
-                                onChange={(e) => handleInputChange(e)}
-                                type="text"
-                                placeholder="Create or Find a Chat Room..."
-                                >
-                            </Form.Control>
-                        </Form.Group>
-                        <Button
-                            onClick={() => processChatRequest()}
-                            >
-                            Send 
-                        </Button>
-                    </Form>
+                            <Form.Label className="label-text"> Name Yourself</Form.Label>
+                                <div className="form-and-btn">
+                                <Form.Group className="form-group">
+                                    <Form.Control
+                                        className="name-form"
+                                        name="chat-room"
+                                        value={chatRoom}
+                                        onChange={(e) => handleInputChange(e)}
+                                        type="text"
+                                        placeholder="What should we call you..."
+                                        >
+                                    </Form.Control>
+                                </Form.Group>
+                                <Button
+                                    className="form-button"
+                                    onClick={() => processChatRequest()}
+                                    >
+                                    Confirm 
+                                </Button>
+                            </div>
+                        </Form>
+                        <Form className="form-container" onSubmit={(e) => { e.preventDefault(); processChatRequest();} }>
+                            <Form.Label className="label-text"> Choose a Topic</Form.Label>
+                                <div className="form-and-btn">
+                                <Form.Group className="form-group">
+                                    <Form.Control
+                                        className="chat-form"
+                                        name="chat-room"
+                                        value={chatRoom}
+                                        onChange={(e) => handleInputChange(e)}
+                                        type="text"
+                                        placeholder="What are you interested in..."
+                                        >
+                                    </Form.Control>
+                                </Form.Group>
+                                <Button
+                                    className="form-button"
+                                    onClick={() => processChatRequest()}
+                                    >
+                                    Chat 
+                                </Button>
+                            </div>
+                        </Form>
                 </Container>
             </div>
         </div>

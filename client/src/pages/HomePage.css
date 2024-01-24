@@ -1,5 +1,6 @@
 body {
     height: 100vh;
+    /* position: relative; */
     background-color: #333745;
     background-image: linear-gradient(70deg, #333745 50%, #3E92CC 50%);
     /* display: flex;
@@ -19,10 +20,6 @@ body {
     display: grid;
     grid-template-columns: repeat(16, 6.25% [col-start]);
     grid-template-rows: repeat(2, 50% [row-start]);
-
-
-    
-    
 }
 
 .grid-container {
@@ -40,14 +37,18 @@ body {
 
 .main-text {
     color: #EDE7E3;
-    font-size: 50px;
+    font-size: 60px;
     margin-bottom: 10px;
 }
 
 .sub-text {
     color: #F4F1BB;
-    font-size: 25px;
+    font-size: 30px;
+}
 
+.label-text {
+    color: #F4F1BB;
+    font-size: 25px;
 }
 
 .forms {
@@ -57,7 +58,35 @@ body {
 }
 
 .form-container {
-    /* display: flex; */
+    display: inline;
+    margin-bottom: 20px;
+}
+
+.form-and-btn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 75px;
+}
+
+.name-form,
+.chat-form,
+.form-button {
+    border: #3E92CC solid 2px;
+    background-color: #F4F1BB;
+    color: #333745;
+}
+
+.name-form,
+.chat-form {
+    height: 50px;
+    width: 250%;
+    font-size: 16px;
+}
+
+.form-button {
+    width: 25%;
+    font-size: 20px;
 }
 
 .form-group {
