@@ -1,0 +1,8 @@
+.container-chat {
+    position: absolute;
+    border: solid black 2px;
+    width: 95%;
+    height: 80%;
+    margin-left: 2.5%;
+    background-color: #F4F1BB;
+}

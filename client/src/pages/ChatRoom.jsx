@@ -2,6 +2,7 @@ import Message from '../components/Message';
 import Chat from '../components/Chat';
 import { useEffect } from 'react';
 import socket from '../utils/socket';
+import './ChatRoom.css';
 
 function ChatRoom() {
 

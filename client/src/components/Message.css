@@ -1,3 +1,6 @@
 .container-message {
-    margin: 10px;
+    position: absolute;
+    bottom: 0%;
+    width: 75%;
+    margin-left: 2.5%;
 }
