@@ -63,27 +63,32 @@ function Message() {
     return (
         <Container className="container-message">
                 <Form >
+                    <div className="form-container">
+
                     <Form.Group>
                         <Form.Control
+                            className="message-form"
                             as="textarea"
                             name="message"
                             value={message}
                             onChange={(e) => handleInputChange(e)}
                             onKeyDown={onEnterPress}
                             type="text"
-                            rows={3}
-                            cols={100}
+                            rows={5}
+                            cols={110}
                             size="lg"
                             placeholder="Leave a message..."
                             />
                     </Form.Group>
                     <Button
+                        className="submit-btn"
                         variant="primary"
                         type="submit"
                         onClick={sendToChat}
-                    >
+                        >
                         Send
                     </Button>
+                </div>
                 </Form>
         </Container>
         
