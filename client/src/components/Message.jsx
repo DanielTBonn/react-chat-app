@@ -19,7 +19,7 @@ function Message() {
 
     const [state, dispatch] = useStoreContext();
 
-    const [updatChat, { error, data }] = useMutation(UPDATE_DBCHAT)
+    const [updateChat, { error, data }] = useMutation(UPDATE_DBCHAT)
 
     const handleInputChange = (e) => {
         e.preventDefault();
@@ -27,6 +27,9 @@ function Message() {
         const { value } = e.target;
         setMessage(value)
     }
+
+    const userName = localStorage.getItem('username');
+    console.log(userName);
 
     const sendToChat = async (e) => {
         e.preventDefault();
@@ -37,10 +40,11 @@ function Message() {
                 messages: [...state.messages, message] 
             });
 
-            const { data } = await updatChat({
+            const { data } = await updateChat({
                 variables: {
                     room: state.room,
-                    message: message
+                    message: message,
+                    username: userName
                 }
             });
 
@@ -63,7 +67,7 @@ function Message() {
     return (
         <Container className="container-message">
                 <Form >
-                    <div className="form-container">
+                    <div className="message-form-container">
 
                     <Form.Group>
                         <Form.Control

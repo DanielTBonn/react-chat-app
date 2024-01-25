@@ -33,6 +33,7 @@ const resolvers = {
         updateChat: async(parent, args) => {
 
             const message = await Message.create({
+                username: args.username || 'Anonymous',
                 message: args.message
             })
 

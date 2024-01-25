@@ -25,6 +25,7 @@ function Chat() {
 
     const myData = data?.getChatById || [];
     const myRoom = myData.room;
+    console.log(myData)
 
     useEffect(() => {
 
@@ -35,8 +36,9 @@ function Chat() {
             });
         }
 
+
         if (!state.messages.length && myData.messages?.length) {
-            const messageData = myData?.messages.map((message) => message.message);
+            const messageData = myData?.messages.map((message) => message.username + ': '+  message.message);
 
             dispatch({
                 type: UPDATE_CHAT,

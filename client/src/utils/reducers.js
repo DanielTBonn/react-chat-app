@@ -1,4 +1,4 @@
-import { UPDATE_CHAT, UPDATE_ROOM } from "./actions";
+import { UPDATE_CHAT, UPDATE_ROOM, UPDATE_NAME } from "./actions";
 
 export const reducer = (state, action) => {
     switch (action.type) {
@@ -12,6 +12,12 @@ export const reducer = (state, action) => {
                 ...state,
                 room: action.room
             };
+        case UPDATE_NAME:
+            console.log('In reducer', action.username)
+            return {
+                ...state,
+                username: action.username
+            }
         default:
             return state;
     }

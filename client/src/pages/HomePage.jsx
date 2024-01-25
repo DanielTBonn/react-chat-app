@@ -10,12 +10,16 @@ import { useStoreContext } from '../utils/GlobalState';
 import { useQuery, useMutation } from '@apollo/client';
 import { GET_CHAT } from '../utils/queries';
 import { CREATE_DBCHAT } from '../utils/mutations';
+import { UPDATE_NAME } from '../utils/actions';
 
 import './HomePage.css';
 
 function HomePage() {
 
     const [ chatRoom, setChatRoom ] = useState('');
+    const [ userName, setUserName ] = useState('');
+
+    const [state, dispatch] = useStoreContext();
 
     const { data, refetch} = useQuery(GET_CHAT, 
             {
@@ -53,12 +57,39 @@ function HomePage() {
         window.location.href = `/room/${chatRoomId}`
     } 
 
-    const handleInputChange = (e) => {
+    const processNameChange = async () => {
+
+
+        localStorage.setItem('username', userName)
+        console.log('in processNameChange', userName)
+        await dispatch({
+            type: UPDATE_NAME,
+            username: userName
+        });
+
+        console.log(state);
+        const user1 = localStorage.getItem('username');
+        console.log('user1', user1)
+
+    }
+
+    console.log(state.username);
+
+    const handleInputChangeChatRoom = (e) => {
         e.preventDefault();
 
         const { value } = e.target;
         console.log( value )
         setChatRoom(value)
+    }
+
+    
+    const handleInputChangeUserName = (e) => {
+        e.preventDefault();
+
+        const { value } = e.target;
+        console.log( value )
+        setUserName(value)
     }
 
     return (
@@ -70,15 +101,15 @@ function HomePage() {
                     <p className="sub-text">Talk with strangers or invite friends to join in on the discussion!</p>
                 </Container>
                 <Container className="forms">
-                    <Form className="form-container" onSubmit={(e) => { e.preventDefault(); processChatRequest();} }>
-                            <Form.Label className="label-text"> Name Yourself</Form.Label>
+                    <Form className="form-container" onSubmit={(e) => {e.preventDefault(); processNameChange();}}>
+                            <Form.Label className="label-text">Name Yourself</Form.Label>
                                 <div className="form-and-btn">
                                 <Form.Group className="form-group">
                                     <Form.Control
                                         className="name-form"
-                                        name="chat-room"
-                                        value={chatRoom}
-                                        onChange={(e) => handleInputChange(e)}
+                                        name="username"
+                                        value={userName}
+                                        onChange={(e) => handleInputChangeUserName(e)}
                                         type="text"
                                         placeholder="What should we call you..."
                                         >
@@ -86,21 +117,21 @@ function HomePage() {
                                 </Form.Group>
                                 <Button
                                     className="form-button"
-                                    onClick={() => processChatRequest()}
+                                    onClick={null}
                                     >
                                     Confirm 
                                 </Button>
                             </div>
                         </Form>
                         <Form className="form-container" onSubmit={(e) => { e.preventDefault(); processChatRequest();} }>
-                            <Form.Label className="label-text"> Choose a Topic</Form.Label>
+                            <Form.Label className="label-text">Choose a Topic</Form.Label>
                                 <div className="form-and-btn">
                                 <Form.Group className="form-group">
                                     <Form.Control
                                         className="chat-form"
                                         name="chat-room"
                                         value={chatRoom}
-                                        onChange={(e) => handleInputChange(e)}
+                                        onChange={(e) => handleInputChangeChatRoom(e)}
                                         type="text"
                                         placeholder="What are you interested in..."
                                         >

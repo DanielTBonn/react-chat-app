@@ -7,6 +7,7 @@ const typeDefs = `
 
     type Message {
         _id: ID!
+        username: String
         message: String!
     }
 
@@ -17,7 +18,7 @@ const typeDefs = `
     }
     type Mutation {
         createChat(room: String!): Chat
-        updateChat(room: String!, message: String!): Chat
+        updateChat(room: String!, message: String!, username: String): Chat
         deleteChat(room: String!): Chat
     }
 `

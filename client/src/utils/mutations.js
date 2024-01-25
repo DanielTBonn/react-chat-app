@@ -15,13 +15,14 @@ export const CREATE_DBCHAT = gql`
 `
 
 export const UPDATE_DBCHAT = gql`
-    mutation UPDATE_DBCHAT($room: String!, $message: String!) {
-        updateChat(room: $room, message: $message ) {
+    mutation UPDATE_DBCHAT($room: String!, $message: String!, $username: String) {
+        updateChat(room: $room, message: $message, username: $username ) {
             _id
             room
             messages {
                 _id
                 message
+                username
             }
         }
     }

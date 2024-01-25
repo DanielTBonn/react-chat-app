@@ -22,6 +22,7 @@ export const GET_CHAT_BY_ID = gql`
             messages {
                 _id
                 message
+                username
             }
         }
     }
